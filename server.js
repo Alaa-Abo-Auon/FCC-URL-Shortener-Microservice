@@ -38,8 +38,6 @@ app.post('/api/shorturl', function(req, res) {
     }else{
       const Aurl = new Url({url: bodyurl})
       Aurl.save((err, data) => {
-        console.log('asdsadadssad',err)
-        console.log('asdxxcxcccccc',data)
         res.json({
           original_url: data.url,
           short_url: data.id
@@ -58,10 +56,8 @@ app.get('/api/shorturl/:id', (req, res) => {
   const id = req.params.id
   Url.findById(id, (err, data) => {
     if(!data) {
-      console.log("dfghjkhgfdsfghjkljhgfdfghjkl",err)
       res.json({error:"Invalid URL"})
     }else{
-      console.log("dfhgjhjlklhgfdsfdghjkhgjf",err)
       res.redirect(data.url)
     }
   })
